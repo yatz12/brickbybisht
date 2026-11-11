@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import { isValidPhoneNumber } from "@/lib/phone-number";
 
 export function ContactForm() {
   const [status, setStatus] = useState("");
@@ -26,6 +27,11 @@ export function ContactForm() {
     }
 
     email.setCustomValidity("");
+    if (phone.value.trim() && !isValidPhoneNumber(phone.value.trim())) {
+      phone.setCustomValidity("Enter a valid phone number with 7 to 15 digits.");
+      form.reportValidity();
+      return;
+    }
     phone.setCustomValidity("");
     setStatus("");
     setSuccessMessage("");
@@ -90,7 +96,15 @@ export function ContactForm() {
           </label>
           <label>
             Phone
-            <input autoComplete="tel" name="phone" onChange={clearContactError} type="tel" />
+            <input
+              autoComplete="tel"
+              inputMode="tel"
+              name="phone"
+              onChange={clearContactError}
+              pattern="\+?[0-9][0-9().\s-]*"
+              title="Enter a valid phone number with 7 to 15 digits."
+              type="tel"
+            />
           </label>
         </div>
         <label>

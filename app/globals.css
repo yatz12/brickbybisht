@@ -13,6 +13,8 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--ivory); color: var(--charcoal); font-family: var(--sans); font-size: 15px; line-height: 1.65; }
+.site-layout { min-height: 100vh; display: flex; flex-direction: column; }
+.site-main { flex: 1; }
 a { color: inherit; }
 button, input, textarea { font: inherit; }
 ::selection { background: #e9d6ce; color: var(--charcoal); }
@@ -100,6 +102,29 @@ h1, h2, h3, p { margin-top: 0; }
 .form-status { min-height: 24px; margin: 0; color: var(--burgundy); font-size: 12px; }
 .success-snackbar { position: fixed; z-index: 20; right: 24px; bottom: 24px; max-width: calc(100vw - 48px); padding: 14px 20px; border-left: 3px solid var(--burgundy); background: var(--charcoal); box-shadow: 0 8px 24px rgba(56, 52, 49, .2); color: var(--paper); font-size: 13px; animation: snackbar-enter .2s ease-out; }
 @keyframes snackbar-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.admin-page { min-height: 65vh; padding-block: 70px 100px; }
+.admin-page h1 { margin-bottom: 12px; font-family: var(--serif); font-size: 46px; font-weight: 400; line-height: 1.15; }
+.admin-panel { max-width: 470px; margin: 45px auto; padding: 34px; border: 1px solid var(--beige); background: var(--paper); }
+.admin-panel > p:not(.eyebrow) { color: var(--muted); font-size: 13px; }
+.admin-login-form { display: grid; gap: 12px; margin-top: 24px; }
+.admin-login-form label { font-size: 12px; font-weight: 600; }
+.admin-login-form input { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid var(--beige); background: var(--paper); color: var(--charcoal); }
+.admin-login-form .button { justify-self: start; margin-top: 5px; }
+.admin-error { color: var(--burgundy); font-size: 12px; }
+.admin-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; margin-bottom: 28px; }
+.admin-heading > div > p:last-child { color: var(--muted); font-size: 12px; }
+.admin-logout-wrap { text-align: right; }
+.admin-logout { min-height: 42px; padding: 0 16px; border: 1px solid var(--beige); background: transparent; color: var(--charcoal); font-size: 12px; cursor: pointer; }
+.admin-logout:hover { border-color: var(--burgundy); color: var(--burgundy); }
+.inquiry-list { display: grid; gap: 14px; }
+.inquiry-card { padding: 22px 24px; border: 1px solid var(--beige); background: var(--paper); }
+.inquiry-card > header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+.inquiry-card h2 { margin-bottom: 8px; font-family: var(--serif); font-size: 21px; font-weight: 400; }
+.inquiry-card time { flex: 0 0 auto; color: var(--muted); font-size: 11px; }
+.inquiry-contact { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; }
+.inquiry-contact a { color: var(--burgundy); }
+.inquiry-message { margin: 16px 0 0; padding-top: 13px; border-top: 1px solid rgba(56, 52, 49, .12); font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; }
 
 .site-footer { border-top: 1px solid var(--beige); background: #f1ede7; }
 .footer-inner { width: min(1400px, calc(100% - 80px)); min-height: 112px; display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: auto; }

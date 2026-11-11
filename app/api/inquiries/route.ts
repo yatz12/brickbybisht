@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { inquiryDatabase } from "@/lib/inquiry-database";
+import { isValidPhoneNumber } from "@/lib/phone-number";
 
 export const runtime = "nodejs";
 
@@ -37,8 +38,8 @@ export async function POST(request: Request) {
   if (email.length > 254 || (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))) {
     return NextResponse.json({ error: "Enter a valid email address." }, { status: 400 });
   }
-  if (phone.length > 40 || (!email && !phone)) {
-    return NextResponse.json({ error: "Enter an email address or phone number." }, { status: 400 });
+  if ((!email && !phone) || (phone && (phone.length > 40 || !isValidPhoneNumber(phone)))) {
+    return NextResponse.json({ error: "Enter a valid phone number with 7 to 15 digits, or provide an email address." }, { status: 400 });
   }
   if (message.length < 1 || message.length > 5000) {
     return NextResponse.json({ error: "Enter a message up to 5000 characters." }, { status: 400 });
