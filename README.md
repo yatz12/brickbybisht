@@ -27,7 +27,19 @@ npm run typecheck
 
 ## Configuration
 
-Configure admin sign-in before using `/admin/inquiries`:
+## Deploy to Render with brickbybisht.com
+
+The repository includes a Render Blueprint in `render.yaml`. It creates a Node web service and mounts a persistent disk at `/var/data`, where the inquiry SQLite database is stored.
+
+1. Push this repository to GitHub, then in Render choose **New → Blueprint** and connect `yatz12/brickbybisht`.
+2. Before deploying, provide a strong, unique value for `ADMIN_PASSWORD` when prompted. Render generates `ADMIN_SESSION_SECRET` for the service.
+3. After the service is live, open its Render dashboard and add `brickbybisht.com` and `www.brickbybisht.com` under **Settings → Custom Domains**.
+4. At your domain's DNS provider, add the records Render displays for both hostnames. Wait for DNS propagation and Render's TLS certificate provisioning; use Render's domain status as confirmation that both DNS and HTTPS are ready.
+5. Test the public site, submit a test inquiry, and sign in at `https://brickbybisht.com/admin/inquiries`. Verify the submission appears in the inbox.
+
+The Render service uses a paid Starter instance because Render persistent disks are not available on its free web-service tier. Keep the disk attached: the SQLite database lives there. Do not remove or replace it without first backing up inquiry data.
+
+For local development, configure admin sign-in before using `/admin/inquiries`:
 
 ```bash
 export ADMIN_PASSWORD='use-a-long-unique-password'
@@ -35,6 +47,6 @@ export ADMIN_SESSION_SECRET="$(node -e "console.log(require('node:crypto').rando
 npm run dev
 ```
 
-Set both variables in the server's environment for deployment; do not commit them to source control. The session secret must be at least 32 characters. The admin session expires after 12 hours. Inquiry data is stored in `.data/inquiries.sqlite`; production hosting must provide persistent storage for this file, otherwise inquiries may be lost on redeploy or restart. The inbox displays the latest 200 submissions.
+Do not commit either secret to source control. The session secret must be at least 32 characters. The admin session expires after 12 hours. The inbox displays the latest 200 submissions.
 
 The site has no CMS or analytics. Update page content in `app/page.tsx`, `app/privacy-policy/page.tsx`, and shared styles in `app/globals.css`.

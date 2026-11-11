@@ -9,10 +9,12 @@ type DatabaseGlobal = typeof globalThis & {
 const globalForDatabase = globalThis as DatabaseGlobal;
 
 function createDatabase() {
-  const dataDirectory = path.join(process.cwd(), ".data");
-  mkdirSync(dataDirectory, { recursive: true });
+  const databasePath = process.env.INQUIRY_DATABASE_PATH
+    ? path.resolve(process.env.INQUIRY_DATABASE_PATH)
+    : path.join(process.cwd(), ".data", "inquiries.sqlite");
+  mkdirSync(path.dirname(databasePath), { recursive: true });
 
-  const database = new Database(path.join(dataDirectory, "inquiries.sqlite"));
+  const database = new Database(databasePath);
   database.pragma("journal_mode = WAL");
   database.pragma("busy_timeout = 5000");
   database.exec(`

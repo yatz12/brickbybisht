@@ -90,7 +90,7 @@ export default function HomePage() {
         <div className="trust-inner section-wrap">
           <p className="eyebrow">MEET THE FOUNDER</p>
           <h2 id="trust-title">Guiding you to <em>thoughtful investments.</em></h2>
-          <p>Sushmita Bisht is a corporate professional with 9 years of experience and founder of Brick By Bisht. Her approach is to help individuals navigate real estate opportunities with greater quality and confidence. </p><p>Whether you're a first-time buyer or an experienced investor, Sushmita takes the time to understand your goals before discussing suitable opportunities.</p>
+          <p>Sushmita Bisht is a corporate professional with 9 years of experience and founder of Brick By Bisht. Her approach is to help individuals navigate real estate opportunities with greater quality and confidence. </p><p>Whether you&apos;re a first-time buyer or an experienced investor, Sushmita takes the time to understand your goals before discussing suitable opportunities.</p>
           <a className="text-link" href="#contact">Book a Free Consultation <span aria-hidden="true">&#8599;</span></a>
           <Image
             alt="Sushmita Bisht, founder of Brick By Bisht"
